@@ -11,6 +11,10 @@
     background:#607d8b;
     border: none;
     color: white;
+
+}
+.button:hover, .operatoren:hover{
+    background: #879ca7;
 }
 
 .textview{

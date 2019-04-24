@@ -7,28 +7,102 @@ var currentValue = "";
 /**
  * gespeicherte Wert nach klicken auf einen action-button
  */
-var storedValue = 0;
+var storedValue = null;
+var storedOperator = null;
 
 for (var i = 0; i < calcButtons.length; i++) {
     calcButtons[i].onclick = function (e) {
-        currentValue = (currentValue * 10) + parseInt(e.target.value);
+        currentValue = currentValue + e.target.value;
+        //currentValue = (currentValue * 10) + parseInt(e.target.value);
         anzeige.value = currentValue;
-        console.log(currentValue);
+        currentValue;
     }
 };
 
-var addition = document.getElementById("addition").onclick = function() {
-    /**
-     * befehl optimieren
-     */
-    storedValue = storedValue + currentValue;
-    currentValue = 0;
+function doCalculation(number1, operator, number2) {
+    if (operator === "+") {
+        return parseFloat(number1) + parseFloat(number2);
+    }
+    if (operator === "-") {
+        return parseFloat(number1) - parseFloat(number2);
+    }
+    if (operator === "*") {
+        return parseFloat(number1) * parseFloat(number2);
+    }
+    if (operator === "/") {
+        return parseFloat(number1) / parseFloat(number2);
+    }
+
+}
+
+var addition = document.getElementById("addition").onclick = function () {
+    if (storedValue === null) {
+        storedValue = currentValue;
+    }
+    else {
+        storedValue = doCalculation(storedValue, storedOperator, currentValue);
+
+    }
+    storedOperator = "+";
+    currentValue = "";
     updateAnzeige();
 }
 
-var deleteButton = document.getElementById("delete").onclick = function() {
-    storedValue = 0;
-    currentValue = 0;
+var subtraction = document.getElementById("subtraction").onclick = function () {
+    if (storedValue === null) {
+        storedValue = currentValue;
+    }
+    else {
+        storedValue = doCalculation(storedValue, storedOperator, currentValue);
+
+    }
+    storedOperator = "-";
+    currentValue = "";
+    updateAnzeige();
+}
+
+var multiplication = document.getElementById("multiplication").onclick = function () {
+    if (storedValue === null) {
+        storedValue = currentValue;
+    }
+    else {
+        storedValue = doCalculation(storedValue, storedOperator, currentValue);
+
+    }
+    storedOperator = "*";
+    currentValue = "";
+    updateAnzeige();
+}
+
+var division = document.getElementById("division").onclick = function () {
+    if (storedValue === null) {
+        storedValue = currentValue;
+    }
+    else {
+        storedValue = doCalculation(storedValue, storedOperator, currentValue);
+
+    }
+    storedOperator = "/";
+    currentValue = "";
+    updateAnzeige();
+}
+
+var resultButton = document.getElementById("result").onclick = function () {
+    if (storedValue === null) {
+        storedValue = currentValue;
+    }
+    else {
+        storedValue = doCalculation(storedValue, storedOperator, currentValue);
+
+    }
+    storedOperator = "=";
+    currentValue = "";
+    updateAnzeige();
+}
+
+var deleteButton = document.getElementById("delete").onclick = function () {
+    storedValue = null;
+    currentValue = "";
     updateAnzeige();
 }
 
@@ -36,5 +110,6 @@ var deleteButton = document.getElementById("delete").onclick = function() {
  * zeigt den storedValue in der Anzeige an
  */
 function updateAnzeige() {
-    anzeige.value = storedValue;
+    anzeige.value = (storedValue === null) ? "0" : storedValue;
+
 }
