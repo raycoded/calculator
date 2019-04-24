@@ -18,7 +18,7 @@ for (var i = 0; i < calcButtons.length; i++) {
         currentValue;
     }
 };
-
+//kommentar
 function doCalculation(number1, operator, number2) {
     if (operator === "+") {
         return parseFloat(number1) + parseFloat(number2);
