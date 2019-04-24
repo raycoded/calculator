@@ -3,7 +3,7 @@ var anzeige = document.getElementById("anzeige");
 /**
  * aktueller Wert nach klicken auf einen action-button
  */
-var currentValue = 0;
+var currentValue = "";
 /**
  * gespeicherte Wert nach klicken auf einen action-button
  */
